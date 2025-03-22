@@ -215,7 +215,14 @@ td, th {
  * 2. The use of `table` rather than `block` is only necessary if using
  *    `:before` to contain the top-margins of child elements.
  */
-.clear::before, .clear::after {
+
+ .blog-post-box {
+  margin-bottom: 50px; /* فاصله بین پست‌ها */
+  padding-bottom: 30px;
+  border-bottom: 1px solid #423434; /* خط جداکننده ملایم */
+}
+
+ .clear::before, .clear::after {
   content: " ";
   display: table;
 }
