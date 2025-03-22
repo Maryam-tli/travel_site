@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from app_travel.models import *
+from django.utils import timezone
 
 # Create your views here.
 def index_view(request):
@@ -9,7 +10,7 @@ def about_view(request):
     return render(request, "about.html")
 
 def blog_home_view(request):
-    posts = Post.objects.all()
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     context = {
         'posts': posts
     }
