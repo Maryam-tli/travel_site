@@ -180,7 +180,7 @@
 										<div class="blog-post-box">
 										    <img class="img-fluid" src="{{ item.image.url }}" alt="">
 										    <a class="posts-title" href="blog-single.html"><h3>{{ item.title }}</h3></a>
-										    <p>{{ item.content }}</p>
+										    <p>{{ item.content|truncatewords:25 }}</p>
 										</div>
 									{% endfor %}
 									<a href="blog-single.html" class="primary-btn">View More</a>
