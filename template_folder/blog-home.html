@@ -58,16 +58,11 @@
 				      <div id="logo">
 				        <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
 				      </div>
-				      <nav id="nav-menu-container">
+					  <nav id="nav-menu-container">
 				        <ul class="nav-menu">
 				          <li><a href="{% url 'index' %}">Home</a></li>
 				          <li><a href="{% url 'about' %}">About</a></li>
-				          <li class="menu-has-children"><a href="">Blog</a>
-				            <ul>
-				              <li><a href="{% url 'home' %}">Blog Home</a></li>
-				              <li><a href="{% url 'single' %}">Blog Single</a></li>
-				            </ul>
-				          </li>	
+				          <li><a href="{% url 'home' %}">Blog</a></li>	
 				          <li><a href="{% url 'elements' %}">Elements</a></li>		                						          					          		          
 				          <li><a href="{% url 'contact' %}">Contact</a></li>
 				        </ul>
@@ -179,7 +174,7 @@
 									{% for item in posts %}
 										<div class="blog-post-box">
 										    <img class="img-fluid" src="{{ item.image.url }}" alt="">
-										    <a class="posts-title" href="blog-single.html"><h3>{{ item.title }}</h3></a>
+										    <a class="posts-title" href="{% url 'single' slug=item.slug %}"><h3>{{ item.title }}</h3></a>
 										    <p>{{ item.content|truncatewords:25 }}</p>
 										</div>
 									{% endfor %}
