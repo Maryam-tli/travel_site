@@ -20,6 +20,7 @@ def blog_home_view(request):
 def blog_single_view(request, slug):
     class_obj = get_object_or_404(Post, slug=slug)
     class_obj.counted_views += 1
+    class_obj.save(update_fields=['counted_views'])
     context = {
         'class_obj': class_obj,
     }
