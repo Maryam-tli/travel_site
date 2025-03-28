@@ -134,25 +134,8 @@
 											<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
 										</div>
 										<div class="detials">
-											<main>
-												<!-- نمایش عنوان پست فعلی -->
-												<h1>
-													<a href="{% url 'single' slug=posts.slug %}">{{ current_post.title }}</a>
-												</h1>
-											
-												<!-- نمایش محتوای پست فعلی -->
-												<p>{{ current_post.title|truncatewords:18 }}</p>
-											
-												<div>
-													{% if previous_index is not None %}
-														<a href="?index={{ previous_index }}">← Previous</a>
-													{% endif %}
-											
-													{% if next_index is not None %}
-														<a href="?index={{ next_index }}">Next →</a>
-													{% endif %}
-												</div>
-											</main>
+											<p>Prev Post</p>
+											<a href="#"><h4>Space The Final Frontier</h4></a>
 										</div>
 									</div>
 									<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
