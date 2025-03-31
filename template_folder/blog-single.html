@@ -126,32 +126,54 @@
 							</div>
 							<div class="navigation-area">
 								<div class="row">
+							
+									<!-- Prev Post -->
 									<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
+										{% if prev_post %}
 										<div class="thumb">
-											<a href="#"><img class="img-fluid" src="{% static 'img/blog/prev.jpg' %}" alt=""></a>
+											<a href="{% url 'single' slug=prev_post.slug %}">
+												<img class="img-fluid" src="{% static 'img/blog/prev_button.png' %}" alt="">
+											</a>
 										</div>
 										<div class="arrow">
-											<a href="#"><span class="lnr text-white lnr-arrow-left"></span></a>
+											<a href="{% url 'single' slug=prev_post.slug %}">
+												<span class="lnr text-white lnr-arrow-left"></span>
+											</a>
 										</div>
 										<div class="detials">
 											<p>Prev Post</p>
-											<a href="#"><h4>Space The Final Frontier</h4></a>
+											<a href="{% url 'single' slug=prev_post.slug %}">
+												<h4>{{ prev_post.title }}</h4>
+											</a>
 										</div>
+										{% endif %}
 									</div>
+							
+									<!-- Next Post -->
 									<div class="col-lg-6 col-md-6 col-12 nav-right flex-row d-flex justify-content-end align-items-center">
+										{% if next_post %}
 										<div class="detials">
 											<p>Next Post</p>
-											<a href="#"><h4>Telescopes 101</h4></a>
+											<a href="{% url 'single' slug=next_post.slug %}">
+												<h4>{{ next_post.title }}</h4>
+											</a>
 										</div>
 										<div class="arrow">
-											<a href="#"><span class="lnr text-white lnr-arrow-right"></span></a>
+											<a href="{% url 'single' slug=next_post.slug %}">
+												<span class="lnr text-white lnr-arrow-right"></span>
+											</a>
 										</div>
 										<div class="thumb">
-											<a href="#"><img class="img-fluid" src="{% static 'img/blog/next.jpg' %}" alt=""></a>
-										</div>										
-									</div>									
+											<a href="{% url 'single' slug=next_post.slug %}">
+												<img class="img-fluid" src="{% static 'img/blog/next_button.png' %}" alt="">
+											</a>
+										</div>
+										{% endif %}
+									</div>
+							
 								</div>
 							</div>
+							
 							<div class="comments-area">
 								<h4>05 Comments</h4>
 								<div class="comment-list">
