@@ -60,11 +60,11 @@
 				      </div>
 				      <nav id="nav-menu-container">
 				        <ul class="nav-menu">
-				          <li><a href="{% url 'index' %}">Home</a></li>
-				          <li><a href="{% url 'about' %}">About</a></li>
-				          <li><a href="{% url 'home' %}">Blog</a></li>	
-				          <li><a href="{% url 'elements' %}">Elements</a></li>		                						          					          		          
-				          <li><a href="{% url 'contact' %}">Contact</a></li>
+				          <li><a href="{% url 'app_travel:index' %}">Home</a></li>
+				          <li><a href="{% url 'app_travel:about' %}">About</a></li>
+				          <li><a href="{% url 'app_blog_travel:home' %}">Blog</a></li>	
+				          <li><a href="{% url 'app_travel:elements' %}">Elements</a></li>		                						          					          		          
+				          <li><a href="{% url 'app_travel:contact' %}">Contact</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->						      		  
 					</div>
@@ -131,18 +131,18 @@
 									<div class="col-lg-6 col-md-6 col-12 nav-left flex-row d-flex justify-content-start align-items-center">
 										{% if prev_post %}
 										<div class="thumb">
-											<a href="{% url 'single' slug=prev_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=prev_post.slug %}">
 												<img class="img-fluid" src="{% static 'img/blog/prev_button.png' %}" alt="">
 											</a>
 										</div>
 										<div class="arrow">
-											<a href="{% url 'single' slug=prev_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=prev_post.slug %}">
 												<span class="lnr text-white lnr-arrow-left"></span>
 											</a>
 										</div>
 										<div class="detials">
 											<p>Prev Post</p>
-											<a href="{% url 'single' slug=prev_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=prev_post.slug %}">
 												<h4>{{ prev_post.title }}</h4>
 											</a>
 										</div>
@@ -154,17 +154,17 @@
 										{% if next_post %}
 										<div class="detials">
 											<p>Next Post</p>
-											<a href="{% url 'single' slug=next_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=next_post.slug %}">
 												<h4>{{ next_post.title }}</h4>
 											</a>
 										</div>
 										<div class="arrow">
-											<a href="{% url 'single' slug=next_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=next_post.slug %}">
 												<span class="lnr text-white lnr-arrow-right"></span>
 											</a>
 										</div>
 										<div class="thumb">
-											<a href="{% url 'single' slug=next_post.slug %}">
+											<a href="{% url 'app_blog_travel:single' slug=next_post.slug %}">
 												<img class="img-fluid" src="{% static 'img/blog/next_button.png' %}" alt="">
 											</a>
 										</div>
