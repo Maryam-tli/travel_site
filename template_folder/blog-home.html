@@ -59,12 +59,12 @@
 				        <a href="index.html"><img src="{% static 'img/logo.png' %}" alt="" title="" /></a>
 				      </div>
 					  <nav id="nav-menu-container">
-				        <ul class="nav-menu">
-				          <li><a href="{% url 'index' %}">Home</a></li>
-				          <li><a href="{% url 'about' %}">About</a></li>
-				          <li><a href="{% url 'home' %}">Blog</a></li>	
-				          <li><a href="{% url 'elements' %}">Elements</a></li>		                						          					          		          
-				          <li><a href="{% url 'contact' %}">Contact</a></li>
+				       <ul class="nav-menu">
+				          <li><a href="{% url 'app_travel:index' %}">Home</a></li>
+				          <li><a href="{% url 'app_travel:about' %}">About</a></li>
+				          <li><a href="{% url 'app_blog_travel:home' %}">Blog</a></li>	
+				          <li><a href="{% url 'app_travel:elements' %}">Elements</a></li>		                						          					          		          
+				          <li><a href="{% url 'app_travel:contact' %}">Contact</a></li>
 				        </ul>
 				      </nav><!-- #nav-menu-container -->						      		  
 					</div>
@@ -174,7 +174,7 @@
 									{% for item in posts %}
 										<div class="blog-post-box">
 										    <img class="img-fluid" src="{{ item.image.url }}" alt="">
-										    <a class="posts-title" href="{% url 'single' slug=item.slug %}"><h3>{{ item.title }}</h3></a>
+										    <a class="posts-title" href="{% url 'app_blog_travel:single' slug=item.slug %}"><h3>{{ item.title }}</h3></a>
 										    <p>{{ item.content|truncatewords:25 }}</p>
 										</div>
 									{% endfor %}
