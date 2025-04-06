@@ -3,10 +3,15 @@ from app_blog_travel.models import *
 from django.utils import timezone
 
 # Create your views here.
-def blog_home_view(request):
+def blog_home_view(request, Tags_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    if Tags_item:
+        posts = posts.filter(Tags__name=Tags_item)
+    all_tags = Tag.objects.filter(post__in=posts).distinct()
+    
     context = {
-        'posts': posts
+        'posts': posts,
+        'all_tags': all_tags,
     }
     return render(request, "blog-home.html", context)
 
