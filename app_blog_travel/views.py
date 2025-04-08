@@ -8,6 +8,8 @@ def blog_home_view(request, Tags_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     if Tags_item:
         posts = posts.filter(Tags__name=Tags_item)
+        
+    all_authors = Author.objects.all()
 
     all_tags = Tag.objects.filter(post__in=posts)
 
@@ -27,7 +29,7 @@ def blog_home_view(request, Tags_item=None):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
-    return render(request, 'blog-home.html', {'tag_dict': tag_dict, 'page_obj': page_obj})
+    return render(request, 'blog-home.html', {'tag_dict': tag_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
 
 
 def blog_single_view(request, slug):
