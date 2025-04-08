@@ -7,6 +7,13 @@ class Tag(models.Model):
     
     def __str__(self):
         return self.name
+    
+class Author(models.Model):
+    name = models.CharField(max_length=50, unique=True)
+    image = models.ImageField(upload_to="author_image",default="author_default/author_info.jpeg" )
+    
+    def __str__(self):
+        return self.name
 
 class Post(models.Model):
     title = models.CharField(max_length=220)
@@ -15,6 +22,7 @@ class Post(models.Model):
     image = models.ImageField(upload_to="Post_default",default="Post_default/my_default.jpeg" )
     counted_views = models.IntegerField(default=0)
     Tags = models.ManyToManyField('Tag')
+    author = models.ManyToManyField('Author')
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True)
