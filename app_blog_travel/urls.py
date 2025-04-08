@@ -5,6 +5,7 @@ app_name = 'app_blog_travel'
 
 urlpatterns = [
     path('blog-home', blog_home_view, name="home"),
-    path('<slug:slug>/', blog_single_view, name="single"),
     path('Tags/<str:Tags_item>/', blog_home_view, name="Tags"),
+    path('search/',blog_search_view, name="search"),
+    path('<slug:slug>/', blog_single_view, name="single"),
 ]
