@@ -17,6 +17,7 @@ def blog_home_view(request, Tags_item=None):
             tag_dict[tag.name] = 1
         else:
             tag_dict[tag.name] += 1
+            
 
     return render(request, 'blog-home.html', {'tag_dict': tag_dict, 'posts': posts})
 
@@ -52,3 +53,15 @@ def blog_single_view(request, slug):
         'next_post': next_post,
     }
     return render(request, 'blog-single.html', context)
+
+def blog_search_view(request, Tags_item=None):
+    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+    if Tags_item:
+        posts = posts.filter(Tags__name=Tags_item)
+
+    if request.method == 'GET':
+        posts = posts.filter(content__icontains=request.GET.get('search'))
+    print(request.__dict__)
+    
+    context = {'posts': posts,}
+    return render(request, 'blog-home.html', context)
