@@ -7,13 +7,18 @@ def blog_home_view(request, Tags_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     if Tags_item:
         posts = posts.filter(Tags__name=Tags_item)
-    all_tags = Tag.objects.filter(post__in=posts).distinct()
-    
-    context = {
-        'posts': posts,
-        'all_tags': all_tags,
-    }
-    return render(request, "blog-home.html", context)
+
+    all_tags = Tag.objects.filter(post__in=posts)
+
+    tag_dict = {}
+
+    for tag in all_tags:
+        if tag.name not in tag_dict:
+            tag_dict[tag.name] = 1
+        else:
+            tag_dict[tag.name] += 1
+
+    return render(request, 'blog-home.html', {'tag_dict': tag_dict, 'posts': posts})
 
 
 def blog_single_view(request, slug):
