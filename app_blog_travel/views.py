@@ -11,15 +11,13 @@ def blog_home_view(request, Tags_item=None):
         
     all_authors = Author.objects.all()
 
-    all_tags = Tag.objects.filter(post__in=posts)
+    all_tags = Tag.objects.all()
 
     tag_dict = {}
 
     for tag in all_tags:
-        if tag.name not in tag_dict:
-            tag_dict[tag.name] = 1
-        else:
-            tag_dict[tag.name] += 1
+        tag_dict[tag] = Post.objects.filter(published_date__lte=timezone.now(), Tags=tag).count()
+        
     paginator = Paginator(posts, 3)
     try:
         page_number = request.GET.get('page')
