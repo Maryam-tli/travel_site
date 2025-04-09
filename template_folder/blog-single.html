@@ -297,11 +297,12 @@
 			                            <button type="submit"><i class="fa fa-search"></i></button>
 			                        </form>
 								</div>
+								{% for item in all_authors %}
 								<div class="single-sidebar-widget user-info-widget">
-									<img src="{% static 'img/blog/user-info.png' %}" alt="">
-									<a href="#"><h4>Charlie Barber</h4></a>
+									<img src="{{ item.image.url }}" alt="">
+									<a href="#"><h4>{{ item.name }}</h4></a>
 									<p>
-										Senior blog writer
+										{{ item.about }}
 									</p>
 									<ul class="social-links">
 										<li><a href="#"><i class="fa fa-facebook"></i></a></li>
@@ -309,10 +310,8 @@
 										<li><a href="#"><i class="fa fa-github"></i></a></li>
 										<li><a href="#"><i class="fa fa-behance"></i></a></li>
 									</ul>
-									<p>
-										Boot camps have its supporters andit sdetractors. Some people do not understand why you should have to spend money on boot camp when you can get. Boot camps have itssuppor ters andits detractors.
-									</p>
 								</div>
+								{% endfor %}
 								<div class="single-sidebar-widget popular-post-widget">
 									<h4 class="popular-title">Popular Posts</h4>
 									{% popular_posts %}
