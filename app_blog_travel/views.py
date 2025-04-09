@@ -38,6 +38,8 @@ def blog_single_view(request, slug):
     class_obj.save(update_fields=['counted_views'])
     posts = list(Post.objects.filter(published_date__lt=timezone.now()).order_by('-published_date'))
     
+    all_authors = Author.objects.all()
+    
     try:
       index = posts.index(class_obj)
     except ValueError:
@@ -61,6 +63,7 @@ def blog_single_view(request, slug):
         'class_obj': class_obj,
         'prev_post': prev_post,
         'next_post': next_post,
+        'all_authors':all_authors,
     }
     return render(request, 'blog-single.html', context)
 
