@@ -22,7 +22,7 @@
               <div class="tags">
                 <ul>
                   {% for tag in item.Tags.all %}
-                    <li><a href="#">{{ tag.name }}</a></li>
+                    <li><a href="{% url 'app_blog_travel:Tags' Tags_item=tag.name %}">{{ tag.name }}</a></li>
                   {% endfor %}
                 </ul>
               </div>
