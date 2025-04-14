@@ -31,7 +31,16 @@
 			<link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}">
 			<link rel="stylesheet" href="{% static 'css/main.css' %}">
 		</head>
-		<body>	
+		<body>
+			{% if messages %}
+				<div class="popup-container">
+				{% for message in messages %}
+					<div class="popup {{ message.tags }}">
+					{{ message }}
+					</div>
+				{% endfor %}
+				</div>
+			{% endif %}	
 			<header id="header">
 				<div class="header-top">
 					<div class="container">
