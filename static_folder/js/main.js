@@ -396,3 +396,12 @@ $(document).ready(function() {
     });
 
 });
+// Auto-hide flash messages after 4 seconds
+setTimeout(function() {
+    const popups = document.querySelectorAll('.popup');
+    popups.forEach(function(popup) {
+      popup.style.opacity = '0';
+      setTimeout(() => popup.remove(), 500);
+    });
+  }, 4000);
+  
