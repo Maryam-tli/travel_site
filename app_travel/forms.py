@@ -4,4 +4,4 @@ from app_travel.models import *
 class ContactForm(ModelForm):
     class Meta:
         model = Contact
-        fields = ['name', 'email', 'message']
+        fields = '__all__'
