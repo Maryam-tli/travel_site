@@ -21,8 +21,8 @@
             <div class="details">
               <div class="tags">
                 <ul>
-                  {% for tag in item.Tags.all %}
-                    <li><a href="{% url 'app_blog_travel:Tags' Tags_item=tag.name %}">{{ tag.name }}</a></li>
+                  {% for cat in item.category.all %}
+                    <li><a href="{% url 'app_blog_travel:category' category_item=cat.name %}">{{ cat.name }}</a></li>
                   {% endfor %}
                 </ul>
               </div>

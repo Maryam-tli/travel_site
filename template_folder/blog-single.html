@@ -29,7 +29,7 @@
 					</div>
 					<div class="col-lg-3  col-md-3 meta-details">
 						<ul class="tags">
-							{% for item in class_obj.Tags.all %}
+							{% for item in class_obj.Categories.all %}
 								<li><a href="#">{{ item }}</a></li>
 								{% if not forloop.last %}, {% endif %}
 							{% endfor %}
