@@ -2,7 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 
 # Create your models here.
-class Tag(models.Model):
+class category(models.Model):
     name = models.CharField(max_length=50, unique=True)
     
     def __str__(self):
@@ -22,7 +22,7 @@ class Post(models.Model):
     slug = models.SlugField(blank=True, null=True)
     image = models.ImageField(upload_to="Post_default",default="first_img_post/my_default.jpeg" )
     counted_views = models.IntegerField(default=0)
-    Tags = models.ManyToManyField('Tag')
+    Categories = models.ManyToManyField('category')
     author = models.ForeignKey('Author', on_delete=models.SET_NULL, null=True)
     published_date = models.DateTimeField(null=True)
     created_date = models.DateTimeField(auto_now_add=True)
