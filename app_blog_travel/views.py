@@ -4,19 +4,19 @@ from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 # Create your views here.
-def blog_home_view(request, Tags_item=None):
+def blog_home_view(request, category_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    if Tags_item:
-        posts = posts.filter(Tags__name=Tags_item)
+    if category_item:
+        posts = posts.filter(Categories__name=category_item)
         
     all_authors = Author.objects.all()
 
-    all_tags = Tag.objects.all()
+    all_category = category.objects.all()
 
-    tag_dict = {}
+    category_dict = {}
 
-    for tag in all_tags:
-        tag_dict[tag] = Post.objects.filter(published_date__lte=timezone.now(), Tags=tag).count()
+    for cat in all_category:
+        category_dict[cat] = Post.objects.filter(published_date__lte=timezone.now(), Categories=cat).count()
         
     paginator = Paginator(posts, 3)
     try:
@@ -27,7 +27,7 @@ def blog_home_view(request, Tags_item=None):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
-    return render(request, 'blog-home.html', {'tag_dict': tag_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
+    return render(request, 'blog-home.html', {'category_dict': category_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
 
 
 def blog_single_view(request, slug):
@@ -65,12 +65,12 @@ def blog_single_view(request, slug):
     }
     return render(request, 'blog-single.html', context)
 
-def blog_search_view(request, Tags_item=None):
+def blog_search_view(request, category_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    if Tags_item:
-        posts = posts.filter(Tags__name=Tags_item)
+    if category_item:
+        posts = posts.filter(category__name=category_item)
 
-    if request.method == 'GET':
+    if request.method=='GET':
         posts = posts.filter(content__icontains=request.GET.get('search'))
     print(request.__dict__)
     
