@@ -1,4 +1,7 @@
 from django.contrib import admin
+from django.contrib.auth.models import Permission
+from django.contrib.sessions.models import Session
+from django.contrib.admin.models import LogEntry
 from app_blog_travel.models import *
 
 # Register your models here.
@@ -24,3 +27,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ["published_date", "Categories"]
     
 admin.site.register(Post, PostAdmin)
+
+admin.site.register(Permission)
+admin.site.register(Session)
+admin.site.register(LogEntry)
