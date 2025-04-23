@@ -21,7 +21,7 @@ admin.site.register(Author, TagAuthor)
 class PostAdmin(admin.ModelAdmin):
     deta_hierarchy = 'published_date'
     empty_value_display = '_empty_'
-    fields = ["title", "content", "slug","image", "counted_views", "category", "author", "published_date"]
+    fields = ["title", "content", "slug","image", "counted_views", "Categories", "author", "published_date"]
     list_display = ["title", "published_date", "created_date", "updated_date"]
     search_fields = ["title", "content", "Categories"]
     list_filter = ["published_date", "Categories"]
