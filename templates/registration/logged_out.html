@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Logged Out{% endblock %}
+
+{% block codes %}
+<!-- 🏞️ Banner Section -->
+<section class="banner-image-login"style="background-image: url({% static 'img/blog/login.jpg' %});">
+  <div class="container">				
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content blog-header-content col-lg-12">
+        <h1>Logout Your Account</h1>						
+      </div>	
+    </div>
+  </div>
+</section></br>
+
+<!-- 🔸 Logout Message Area -->
+<section class="logout-content">
+  <div class="logout-box">
+    <h1>You have been logged out.</h1>
+    <p>Hope to see you again soon! 👋</p>
+    <a href="{% url 'login' %}" class="btn-logout-return">🔐 Login Again</a>
+  </div>
+</section>
+{% endblock %}
