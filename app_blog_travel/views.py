@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from app_blog_travel.models import *
 from django.utils import timezone
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 def blog_home_view(request, category_item=None):
@@ -29,7 +30,7 @@ def blog_home_view(request, category_item=None):
 
     return render(request, 'blog-home.html', {'category_dict': category_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
 
-
+@login_required
 def blog_single_view(request, slug):
     class_obj = get_object_or_404(Post, slug=slug)
     class_obj.counted_views += 1
