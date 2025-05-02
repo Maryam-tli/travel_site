@@ -5,6 +5,7 @@ app_name = 'app_travel'
 
 urlpatterns = [
     path('', index_view, name="index"),
+    path('signup/', signup_view, name='signup'),
     path('about', about_view, name="about"),
     path('elements', elements_view, name="elements"),
     path('contact', contact_view, name="contact"),
