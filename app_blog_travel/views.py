@@ -28,7 +28,7 @@ def blog_home_view(request, category_item=None):
     except EmptyPage:
         page_obj = paginator.page(paginator.num_pages)
 
-    return render(request, 'blog-home.html', {'category_dict': category_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
+    return render(request, 'blog-home.html', {'posts':posts,'category_dict': category_dict, 'page_obj': page_obj, 'all_authors':all_authors,})
 
 @login_required
 def blog_single_view(request, slug):
@@ -68,12 +68,32 @@ def blog_single_view(request, slug):
 
 def blog_search_view(request, category_item=None):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    if category_item:
-        posts = posts.filter(category__name=category_item)
-
-    if request.method=='GET':
-        posts = posts.filter(content__icontains=request.GET.get('search'))
-    print(request.__dict__)
     
-    context = {'posts': posts,}
+    if category_item:
+        posts = posts.filter(Categories__name=category_item)
+
+    search_query = request.GET.get('search')
+    if search_query:
+        posts = posts.filter(Categories__name__icontains=search_query)
+
+    paginator = Paginator(posts, 3)
+    try:
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+    except PageNotAnInteger:
+        page_obj = paginator.page(1)
+    except EmptyPage:
+        page_obj = paginator.page(paginator.num_pages)
+
+    all_authors = Author.objects.all()
+    all_category = category.objects.all()
+    category_dict = {cat: Post.objects.filter(published_date__lte=timezone.now(), Categories=cat).count() for cat in all_category}
+
+    context = {
+        'page_obj': page_obj,
+        'posts': posts,
+        'all_authors': all_authors,
+        'category_dict': category_dict,
+    }
+
     return render(request, 'blog-home.html', context)
