@@ -22,11 +22,17 @@ from django.conf.urls.static import static
 from django.urls import re_path
 from app_travel.views import coming_soon
 
-urlpatterns = [
-    #path("admin/", admin.site.urls),
-    #path('', include('app_travel.urls')),
-    #path('blog/', include('app_blog_travel.urls')),
-    #path('accounts/', include('django.contrib.auth.urls')),
+
+if settings.COMING_SOON_MODE:
+    urlpatterns = [
+        re_path(r'^.*$', coming_soon),
+    ]
+else:
+    urlpatterns = [
+    path("admin/", admin.site.urls),
+    path('', include('app_travel.urls')),
+    path('blog/', include('app_blog_travel.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
     re_path(r'^.*$', coming_soon),
 ]
 
