@@ -31,6 +31,9 @@ ALLOWED_HOSTS = []
 # auth model
 LOGIN_REDIRECT_URL = '/'
 
+#coming_soon
+COMING_SOON_MODE = True
+
 # email
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
