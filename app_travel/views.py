@@ -44,3 +44,6 @@ def signup_view(request):
             login(request, user)  # ورود خودکار بعد از ثبت‌نام
             return redirect('/')  # یا هر صفحه‌ای که خواستی
     return render(request, 'signup.html', {'form': form})
+
+def coming_soon(request):
+    return render(request, 'coming_soon.html')
